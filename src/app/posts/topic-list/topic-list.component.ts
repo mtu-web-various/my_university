@@ -9,35 +9,18 @@ import { Subscription } from 'rxjs';
   templateUrl: './topic-list.component.html',
   styleUrls: ['./topic-list.component.css']
 })
-export class TopicListComponent implements OnInit, OnDestroy {
+export class TopicListComponent implements OnInit {
 
   topics: Topic[] = [];
-  private topicSubs: Subscription;
 
   constructor(public topicService: TopicService) { }
 
   ngOnInit() {
     this.topics = this.topicService.getTopics();
-    this.topicSubs = this.topicService.getTopicUpdateListener()
-      .subscribe((topics: Topic[]) => {
-        this.topics = topics;
-      });
-  }
-
-  ngOnDestroy(){
-    this.topicSubs.unsubscribe();
   }
 
   onTopicFormSubmit(form: NgForm){
-    if (form.invalid){
-      return;
-    }
-
-    this.topicService.addTopics(
-      {topicName: "My Topic",
-      text: "My Post",
-      userId: "1",
-      time: "now"},
-      "1", form.value.post, "now");
+    this.topicService.addTopic(form.value.topic,1,form.value.post,1);
+    this.topics = this.topicService.getTopics();
   }
 }

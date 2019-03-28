@@ -1,6 +1,10 @@
-<!-- Modal -->
 <h2>Topics <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-lg">+Topic</button></h2>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" 
+    tabindex="-1" 
+    role="dialog" 
+    aria-labelledby="myLargeModalLabel" 
+    aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,27 +16,33 @@
         <div class="container">
           <form (ngSubmit)="onTopicFormSubmit(f)" #f="ngForm">
             <div class="form-group">
-              <label for="exampleInputEmail1">Topic</label>
+              <label>Topic</label>
               <input type="text" class="form-control" placeholder="Topic Name"
               class="form-control"
               name="topic"
               ngModel>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Post</label>
+              <label>Post</label>
               <textarea class="form-control" rows="3"
               class="form-control"
               name="post"
               ngModel></textarea>
             </div>
             <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button 
+            type="submit" 
+            class="btn btn-primary"
+            >Submit</button>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
+
+<!-- ---------------------------------------------------------- -->
+
 <div class="list-group" *ngIf = "topics.length > 0">
   <a href="#" class="list-group-item list-group-item-action" *ngFor="let topic of topics ">{{ topic.topicName }}</a>
 </div>

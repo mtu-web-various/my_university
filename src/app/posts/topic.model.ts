@@ -1,14 +1,10 @@
-import { Post } from './post.model';
-
 export class Topic{
-  posts: Post[];
-  //userId: string;
+  postID: number;
   topicName: string;
-  //time: string;
 
-  constructor(name: string, posts: Post[]){
+  constructor(name: string, postID: number){
     this.topicName = name;
-    this.posts = posts;
+    this.postID = postID;
   }
 
 

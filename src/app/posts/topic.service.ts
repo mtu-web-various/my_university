@@ -7,8 +7,8 @@ import { PostService } from './posts.service';
 @Injectable()
 export class TopicService {
   private topics: Topic[] = [
-    new Topic("CS101-2019-Winter", [ new Post("Interesting class"), new Post("I like it") ] ),
-    new Topic("Restaurants", [ new Post("Italian Restaurant"), new Post("Tasty food in Inihod") ] )
+    new Topic("CS101-2019-Winter", 1 ),
+    new Topic("Restaurants", 2)
   ];
 
   constructor(private postService: PostService){}
@@ -18,13 +18,12 @@ export class TopicService {
     return [...this.topics];
   }
 
-  getTopicUpdateListener(){
-    return this.topicsUpdated.asObservable();
+  getTopic(index: number){
+    return this.topics[index];
   }
 
-  addTopics(post: Post, userId: string, topicName: string, time: string){
-
-    const topic: Topic = {  userId: userId, topicName: topicName, time: time };
-    this.topics.push(topic);
+  addTopic(topicName: string, topicID: number, postContent: string, postID: number){
+    this.topics.push(new Topic(topicName, topicID));
+    this.postService.addPost(postID, postContent, topicID);
   }
 }
